@@ -1,0 +1,81 @@
+/* CarePulse Hospital Management System - Core Utilities & Component Styling */
+
+.app-wrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Print specific styles for medical records, invoices, and prescriptions */
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  #printable-rx-slip,
+  #printable-rx-slip *,
+  #printable-clinical-chart,
+  #printable-clinical-chart *,
+  #printable-invoice,
+  #printable-invoice * {
+    visibility: visible;
+  }
+  #printable-rx-slip,
+  #printable-clinical-chart,
+  #printable-invoice {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    margin: 0;
+    padding: 20px;
+    box-shadow: none !important;
+    border: none !important;
+    background: #ffffff !important;
+  }
+}
+
+/* Pulsing Status Indicators */
+.pulse-indicator {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  position: relative;
+}
+
+.pulse-indicator::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: inherit;
+  animation: pulse-ring 1.8s cubic-bezier(0.24, 0, 0.38, 1) infinite;
+}
+
+@keyframes pulse-ring {
+  0% {
+    transform: scale(0.95);
+    opacity: 0.8;
+  }
+  70% {
+    transform: scale(2.4);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(2.4);
+    opacity: 0;
+  }
+}
+
+/* Smooth micro-interactions */
+.hover-lift {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.hover-lift:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
